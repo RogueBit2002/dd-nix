@@ -66,7 +66,7 @@ hl.curve("easeOutExpo", { type="bezier", points = { {0.16, 1}, {.3, 1}}})
 hl.animation({ leaf = "windowsMove", enabled = true, speed = 3, bezier="easeOutExpo" })
 hl.animation({ leaf = "global", enabled = false })
 
-require("layout")(mainMod, "easeOutExpo")
+require("layout").setup({ modifier = mainMod, animation = { speed = 3, bezier = "easeOutExpo" }})
 require("style")
 require("monitor").setup(nix.wallpaper)
 

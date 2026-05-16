@@ -25,17 +25,19 @@
 		systemd.user.services.kanshi = {
 			Unit = {
 				Description = "Kanshi background service";
-				BindsTo = [ "xdg-desktop-autostart.target" ];
+				BindsTo = [ "graphical-session.target" ];
+				After = [ "graphical-session.target" ];
 			};
 
 			Service = {
 				Type = "simple";
-				ExecCondition = "${pkgs.runtimeShell} -c '[ \"$XDG_SESSION_TYPE\" = wayland ]'";
+				ExecEnvironment = "XDG_SESSION_TYPE=wayland";
 				ExecStart = "${lib.getExe pkgs.kanshi} --config ${./kanshi.conf}";
+				Restart="on-failure";
 			};
 
 			Install = {
-				WantedBy = [ "xdg-desktop-autostart.target" ];
+				WantedBy = [ "graphical-session.target" ];
 			};
 		};
 
