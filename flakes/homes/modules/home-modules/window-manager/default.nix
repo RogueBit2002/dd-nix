@@ -1,27 +1,25 @@
-{ inputs, ... }: {
+{ self, inputs, ... }: {
 	flake.homeModules.window-manager = { terminal, font-family, pkgs, lib, ... }: let
 		system = pkgs.stdenv.hostPlatform.system;
-		hyprland-pkgs = inputs.hyprland.packages.${system};
 	in {
 
-		home.packages = [
-			pkgs.uwsm
-			pkgs.kanshi
-			(inputs.dd-desktop-shell.packages.${system}.session.override {
-				
-				hyprland = hyprland-pkgs.hyprland;
-				inherit terminal;
-				inherit font-family;
-			})
+
+		imports = [
+			inputs.dd-mtess.homeModules.default
 		];
 
-		wayland.windowManager.hyprland = {
+		programs.mtess = {
 			enable = true;
-			systemd.enable = false;
-			package = hyprland-pkgs.hyprland;
-			portalPackage = hyprland-pkgs.xdg-desktop-portal-hyprland;
+			inherit terminal;
+			inherit font-family;
 		};
 
+		xdg.portal.enable = true;
+
+		home.packages = [
+			pkgs.kanshi
+		];
+		
 		systemd.user.services.kanshi = {
 			Unit = {
 				Description = "Kanshi background service";
@@ -40,6 +38,24 @@
 				WantedBy = [ "graphical-session.target" ];
 			};
 		};
+		
+		systemd.user.services.wayland-wallpaper = {
+			Unit = {
+				Description = "Wallpaper background service";
+				BindsTo = [ "graphical-session.target" ];
+				After = [ "graphical-session.target" ];
+			};
 
+			Service = {
+				Type = "simple";
+				ExecEnvironment = "XDG_SESSION_TYPE=wayland";
+				ExecStart = "${lib.getExe pkgs.swaybg} --image ${self + /resources/wallpapers/fw-ascii-hand.png} --mode fit --color 000000";
+				Restart="on-failure";
+			};
+
+			Install = {
+				WantedBy = [ "graphical-session.target" ];
+			};
+		};
 	};
 }

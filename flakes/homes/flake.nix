@@ -8,10 +8,10 @@
 		home-manager.url = "github:nix-community/home-manager/release-25.11";
 		home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-		hyprland.url = "github:hyprwm/Hyprland?tag=v0.55.0";
+		#hyprland.url = "github:hyprwm/Hyprland?tag=v0.55.0";
 		
 		dd-systems.url = "path:../systems";
-		dd-desktop-shell.url = "path:../desktop-shell";
+		dd-mtess.url = "path:../mtess";
 		dd-apps.url = "path:../apps";
 	};
 

@@ -5,9 +5,7 @@
 
 		home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
 		home.stateVersion = "25.11";
-
-		xdg.portal.enable = true;
-		
+	
 		xdg.enable = true;
 		xdg.userDirs = let
 			docs = "${config.home.homeDirectory}/docs";

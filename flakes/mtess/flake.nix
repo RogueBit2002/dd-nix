@@ -9,6 +9,8 @@
 		home-manager.url = "github:nix-community/home-manager/release-25.11";
 		home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+		hyprland.url = "github:hyprwm/Hyprland?tag=v0.55.0";
+		
 		fsel.url = "github:Mjoyufull/fsel?tag=3.4.1";
 	};
 

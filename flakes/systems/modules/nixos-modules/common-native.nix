@@ -9,7 +9,7 @@
 			useTextGreeter = true;
 			settings = {
 				default_session = {
-					command = "${lib.getExe pkgs.tuigreet} --remember --time";
+					command = "${lib.getExe pkgs.tuigreet} --remember --remember-user-session --time";
         			user = "greeter";
 				};
 			};
