@@ -2,8 +2,6 @@
 	flake.homeModules.window-manager = { terminal, font-family, pkgs, lib, ... }: let
 		system = pkgs.stdenv.hostPlatform.system;
 	in {
-
-
 		imports = [
 			inputs.dd-mtess.homeModules.default
 		];

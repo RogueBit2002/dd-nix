@@ -1,0 +1,1 @@
+systemd-run --scope --user --quiet --property=Before=graphical-session.target --property=BindsTo=graphical-session.target --property=Wants=graphical-session-pre.target --property=After=graphical-session-pre.target -- hyprland

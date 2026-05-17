@@ -6,14 +6,13 @@ if [ $# -eq 0 ]; then
 	exit 1
 fi
 
-here=$(dirname $0)
-echo "Searching pid"
-pid=$($here/get-pid.sh)
-echo "Got PID: $pid"
 
-unit=$(cat /proc/"$pid"/cgroup | grep -oE '[^/]+\.(service|scope)' /proc/$pid/cgroup | tail -n1)
+here=$(dirname $0)
+
+unit="run-p23287-i23288.scope"
+
 echo $unit
-exit 0
+
 name="cmd-$(date +%s%N)"
 
 systemd-run \

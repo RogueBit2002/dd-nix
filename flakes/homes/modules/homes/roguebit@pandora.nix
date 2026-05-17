@@ -14,6 +14,7 @@
 		modules = [
 			self.homeModules.common
 			self.homeModules.window-manager
+			self.homeModules.browser
 
 			({ config, terminal, pkgs, ... }: {
 				home.username = "roguebit";
