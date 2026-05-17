@@ -39,15 +39,6 @@
 					enable = true;
 				};
 
-				programs.librewolf = {
-					enable = true;
-
-					settings = {
-						"webgl.disabled" = false;
-						"privacy.resistFingerprinting" = false;
-					};
-				};
-
 				programs.discord.enable = true;
 
 				programs.ssh = {

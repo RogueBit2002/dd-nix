@@ -14,6 +14,7 @@
 		modules = [
 			self.homeModules.common
 			self.homeModules.window-manager
+			self.homeModules.browser
 
 			({ config, terminal, pkgs, ... }: {
 				home.username = "roguebit";
@@ -36,15 +37,6 @@
 		
 				programs.bash = {
 					enable = true;
-				};
-
-				programs.librewolf = {
-					enable = true;
-
-					settings = {
-						"webgl.disabled" = false;
-						"privacy.resistFingerprinting" = false;
-					};
 				};
 
 				programs.discord.enable = true;
