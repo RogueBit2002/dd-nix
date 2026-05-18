@@ -22,6 +22,7 @@
 				fonts.fontconfig.enable = true;
 				home.packages = with pkgs; [
 					_0xproto
+					unityhub
 				] ++ (with inputs.dd-apps.packages.${system}; [
 					nvim
 					yazi

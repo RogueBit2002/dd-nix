@@ -6,6 +6,7 @@
 			settings = {
 				"webgl.disabled" = false;
 				"privacy.resistFingerprinting" = false;
+				"sidebar.visibility" = "always-show";
 				"sidebar.verticalTabs" = true;
 				"sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
 			};	
