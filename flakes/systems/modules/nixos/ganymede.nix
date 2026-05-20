@@ -8,11 +8,12 @@
 			
 			self.nixosModules.user-definitions
 			self.nixosModules.user-authentication_debug
-
+			
+			self.nixosModules.networking
+			
 			({ pkgs, ... }: {
 				networking.hostName = "ganymede";
 
-				networking.networkmanager.enable = true;
 
 				programs.ssh.startAgent = true;
 				programs.steam = {

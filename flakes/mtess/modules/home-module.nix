@@ -45,7 +45,7 @@
 					label = cfg.label;
 					terminal = cfg.terminal;
 					launcher = cfg.launcher;
-					clipbaord = cfg.clipboard;
+					clipboard = cfg.clipboard;
 					font-family = cfg.font-family;
 					hooks = cfg.hooks;
 					uwsm = pkgs.uwsm;

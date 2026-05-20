@@ -17,14 +17,14 @@ bench-it() {
 }
 
 echo "Benching app2unit"
-bench-it app2unit -- sleep 0.1
+bench-it app2unit -- kitty -e sleep 0.1
 
 sleep 3
 
 echo "Benching xair-app"
-bench-it ./result/bin/xair-app -- sleep 0.1
+bench-it ./result/bin/xair-app -- kitty -e sleep 0.1
 
 sleep 2
 
 echo "Benching xair-app --defer"
-bench-it ./result/bin/xair-app --defer -- sleep 0.1
+bench-it ./result/bin/xair-app --defer -- kitty -e sleep 0.1
