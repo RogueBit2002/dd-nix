@@ -2,6 +2,6 @@
 
 - Bar
 - Lockscreen
-- Monitor keybinds
-- Workspaces keybinds
 - UWSM alternative
+- Screenshots
+

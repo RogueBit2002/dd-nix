@@ -83,9 +83,11 @@ hl.monitor({
 })
 
 
+if nix.terminal ~= nil then hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(nix.terminal)) end
+if nix.launcher ~= nil then hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(nix.launcher)) end
+if nix.clipboard ~= nil then hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(nix.clipboard)) end
+
 hl.bind(mainMod .. " + CTRL + Backspace", hl.dsp.exec_cmd("uwsm stop"))
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("uwsm-app -- " .. nix.terminal))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("uwsm-app -- " .. nix.fuzzel))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
 hl.window_rule({

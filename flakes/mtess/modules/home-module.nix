@@ -12,9 +12,20 @@
 			};
 
 			terminal = lib.mkOption {
-				type = lib.types.package;
-				default = pkgs.kitty;
+				type = with lib.types; nullOr (either package str);
+				default = pkgs.foot;
 			};
+
+			launcher = lib.mkOption {
+				type = with lib.types; nullOr (either package str);
+				default = pkgs.fuzzel;
+			};
+
+			clipboard = lib.mkOption {
+				type = with lib.types; nullOr (either package str);
+				default = null;
+			};
+
 
 			font-family = lib.mkOption {
 				type = lib.types.nullOr lib.types.str;
@@ -33,6 +44,8 @@
 				(self.packages.${system}.default.override { 
 					label = cfg.label;
 					terminal = cfg.terminal;
+					launcher = cfg.launcher;
+					clipbaord = cfg.clipboard;
 					font-family = cfg.font-family;
 					hooks = cfg.hooks;
 					uwsm = pkgs.uwsm;

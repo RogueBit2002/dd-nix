@@ -13,10 +13,11 @@
 
 		modules = [
 			self.homeModules.common
+			self.homeModules.essentials
 			self.homeModules.window-manager
 			self.homeModules.browser
 
-			({ config, terminal, pkgs, ... }: {
+			({ config, terminal, pkgs, lib, ... }: {
 				home.username = "roguebit";
 				
 				fonts.fontconfig.enable = true;
@@ -33,6 +34,7 @@
 
 				home.sessionVariables = {
 					EDITOR = "nvim";
+					TERMINAL = "${lib.getExe terminal}";
 					NIXOS_OZONE_WL = "1";
 				};
 		

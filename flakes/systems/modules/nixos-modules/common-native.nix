@@ -1,6 +1,6 @@
 { ... }: {
 	flake.nixosModules.common-native = { pkgs, lib, ... }: {
-		# boot.kernelPackages = lib.mkForce pkgs.linuxPackages_7_0;
+		boot.kernelPackages = lib.mkForce pkgs.linuxPackages_7_0;
 		boot.loader.systemd-boot.enable = true;
  		boot.loader.efi.canTouchEfiVariables = true;
 
