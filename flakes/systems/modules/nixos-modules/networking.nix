@@ -19,10 +19,5 @@
 				};
 			};
 		};
-
-		# Nice tui for wifi
-		environment.systemPackages = [
-			pkgs.impala
-		];
 	};
 }

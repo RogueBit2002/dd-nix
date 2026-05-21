@@ -3,40 +3,34 @@
 		system = pkgs.stdenv.hostPlatform.system;
 
 		fuzzel = inputs.dd-apps.packages.${system}.fuzzel.override { inherit font-family; };
+		cliphist = inputs.dd-apps.packages.${system}.cliphist;
 	in {
 		imports = [
 			inputs.dd-mtess.homeModules.default
 		];
 
-dconf.settings = {
-  "org/gnome/desktop/interface" = {
-    color-scheme = "prefer-dark";
-  };
-  };
-/*dbus.packages = [ pkgs.dconf ];
-*/
-/*gtk = {
-      enable = true;
-      theme = {
-        name = "Adwaita-dark";
-        package = pkgs.gnome-themes-extra;
-      };
-    };*/
+		dconf.settings = {
+			"org/gnome/desktop/interface" = {
+    			color-scheme = "prefer-dark";
+  			};
+  		};
+
 		programs.mtess = {
 			enable = true;
 			
 			terminal = "${lib.getExe pkgs.app2unit} -- ${lib.getExe terminal}";
 			launcher = "${lib.getExe fuzzel} --launch-prefix='${lib.getExe pkgs.app2unit} --'";
-			clipboard = "${lib.getExe pkgs.cliphist} list | ${lib.getExe fuzzel} --dmenu | ${lib.getExe pkgs.cliphist} decode | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
+			clipboard = "${lib.getExe cliphist} list | ${lib.getExe fuzzel} --dmenu | ${lib.getExe cliphist} decode | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
 			inherit font-family;
 		};
 
 		xdg.portal.enable = true;
-		#xdg.portal.configPackages = [ pkgs.gnome-session ];
 		home.packages = [
-			pkgs.kanshi
 			fuzzel
+			pkgs.kanshi
 			pkgs.dconf # Required for gnome/gtk/dconf.settings
+			pkgs.wl-clipboard
+			cliphist
 		];
 		
 		systemd.user.services.kanshi = {
@@ -87,7 +81,7 @@ dconf.settings = {
 			Service = {
 				Type = "simple";
 				ExecEnvironment = "XDG_SESSION_TYPE=wayland";
-				ExecStart = "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --watch ${lib.getExe pkgs.cliphist} store";
+				ExecStart = "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --watch ${lib.getExe cliphist} store";
 				Restart="on-failure";
 			};
 

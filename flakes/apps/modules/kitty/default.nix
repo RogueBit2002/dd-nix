@@ -9,7 +9,6 @@
 			name = "kitty";
 
 			paths = [ pkgs.kitty ];
-			buildInputs = [ pkgs.nerd-fonts._0xproto ];
 			nativeBuildInputs = [ pkgs.makeWrapper ];
 			postBuild = "wrapProgram $out/bin/kitty --add-flag --config --add-flag ${final-config}";
 

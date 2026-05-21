@@ -10,7 +10,8 @@
 			self.nixosModules.user-authentication_debug
 			
 			self.nixosModules.networking
-			
+			self.nixosModules.bluetooth
+
 			({ pkgs, ... }: {
 				networking.hostName = "ganymede";
 

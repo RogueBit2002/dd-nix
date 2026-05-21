@@ -16,6 +16,7 @@
 			self.homeModules.essentials
 			self.homeModules.window-manager
 			self.homeModules.browser
+			self.homeModules.discord-helper
 
 			({ config, terminal, pkgs, lib, ... }: {
 				home.username = "roguebit";
@@ -24,10 +25,12 @@
 				home.packages = with pkgs; [
 					_0xproto
 					unityhub
+					bluetui
 				] ++ (with inputs.dd-apps.packages.${system}; [
 					nvim
 					yazi
 					wiremix
+					impala
 				]) ++ [
 					terminal
 				];
