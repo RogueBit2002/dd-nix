@@ -4,10 +4,9 @@
 		
 		import-tree.url = "github:vic/import-tree";
 		
-		nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+		nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 		
 		pancake.url = "github:RogueBit2002/pancake.nvim";
-		pancake.inputs.nixpkgs.follows = "nixpkgs";
 	};
 
 	outputs = { ... }@inputs: inputs.flake-parts.lib.mkFlake

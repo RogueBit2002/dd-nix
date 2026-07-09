@@ -9,10 +9,10 @@
 			self.nixosModules.user-definitions
 			self.nixosModules.user-authentication_debug
 
+			self.nixosModules.networking
 			({ pkgs, ... }: {
 				networking.hostName = "pandora";
 
-				networking.networkmanager.enable = true;
 
 				programs.ssh.startAgent = true;
 				programs.steam = {
@@ -28,7 +28,10 @@
 				};
 
 				services.fwupd.enable = true;
-				#boot.kernelPackages = pkgs.linuxPackages_6_18;
+
+				powerManagement.cpuFreqGovernor = "performance";
+
+				programs.nix-ld.enable = true;
 			})
 		];
 	};

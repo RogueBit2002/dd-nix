@@ -10,6 +10,8 @@
 			self.nixosModules.user-authentication_debug
 			
 			self.nixosModules.networking
+			self.nixosModules.wireless
+
 			self.nixosModules.bluetooth
 
 			({ pkgs, ... }: {

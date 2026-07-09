@@ -1,8 +1,7 @@
-{ self, inputs, ... }: {
-	flake.homeModules.browser = { config, pkgs, lib, ... }: {
+{ ... }: {
+	flake.homeModules.browser = { config, pkgs, lib, ... }:  {
 		programs.librewolf = {
 			enable = true;
-
 			settings = {
 				"webgl.disabled" = false;
 				"privacy.resistFingerprinting" = false;

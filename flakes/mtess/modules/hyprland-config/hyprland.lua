@@ -70,7 +70,10 @@ hl.config({
 		accel_profile = "flat",
 		touchpad = {
 			natural_scroll = true
-		}
+		},
+
+		repeat_rate = 35,
+		repeat_delay = 400,
 	}
 })
 
@@ -91,9 +94,10 @@ hl.bind(mainMod .. " + CTRL + Backspace", hl.dsp.exec_cmd("uwsm stop"))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
 hl.window_rule({
-	name = "enable-steam-tearing",
+	name = "steam-game-patches",
 	match = { class = "^(steam_app_[0-9]+)$" },
-	immediate = true
+	immediate = true,
+	content = "game"
 })
 
 hl.curve("easeOutExpo", { type = "bezier", points = { { 0.16, 1 }, { .3, 1 } } })

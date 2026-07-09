@@ -2,7 +2,7 @@
 	flake.nixosModules.common = { pkgs, lib, config, ... }: {
 		nixpkgs.pkgs = withSystem config.nixpkgs.hostPlatform.system ({ pkgs, ... }: pkgs );
 
-		nix.settings.experimental-features = [ "nix-command" "flakes" ];
+		nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
 
 		system.stateVersion = "25.11";
 

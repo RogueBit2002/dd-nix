@@ -13,15 +13,18 @@
 	
 		modules = [
 			self.homeModules.common
+			self.homeModules.essentials
 			self.homeModules.window-manager
 			self.homeModules.browser
+			self.homeModules.discord-helper
 
-			({ config, terminal, pkgs, ... }: {
+			({ config, terminal, pkgs, lib, ... }: {
 				home.username = "roguebit";
 				
 				fonts.fontconfig.enable = true;
 				home.packages = with pkgs; [
 					_0xproto
+					unityhub
 				] ++ (with inputs.dd-apps.packages.${system}; [
 					nvim
 					yazi
@@ -32,6 +35,7 @@
 
 				home.sessionVariables = {
 					EDITOR = "nvim";
+					TERMINAL = "${lib.getExe terminal}";
 					NIXOS_OZONE_WL = "1";
 				};
 		

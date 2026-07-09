@@ -103,6 +103,8 @@ return {
 				-- hl.dsp.layout("focus {dir}") is influenced by scrolling direction (which is bad), so hl.dsp.focus should be used
 				hl.bind(string.format("%s + %s", settings.modifier, key), hl.dsp.focus({ direction = dir }))
 				hl.bind(string.format("%s + SHIFT + %s", settings.modifier, key), hl.dsp.window.move({ direction = dir }))
+				-- hl.bind(string.format("%s + CTRL + %s", settings.modifier, key), hl.dsp.focus({ monitor = dir[1] }))
+				-- hl.bind(string.format("%s + CTRL + SHIFT + %s", settings.modifier, key), hl.dsp.window.move({ monitor = dir[1] }))
 			end
 		end
 

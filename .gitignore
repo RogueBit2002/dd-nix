@@ -1,4 +1,1 @@
-/result
-/result/
-/flakes/*/result
-/flakes/*/result/
+**/result
