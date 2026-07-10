@@ -4,12 +4,13 @@
 			self.nixosModules.pandora-hardware	
 
 			inputs.impermanence.nixosModules.impermanence
+			inputs.home-manager.nixosModules.default
 
+			self.nixosModules.sops
 			self.nixosModules.nix
 			self.nixosModules.graphics-amd
 			self.nixosModules.users
 
-			self.nixosModules.ssh
 			self.nixosModules.compat
 
 			({ pkgs, lib, ... }: {
@@ -19,7 +20,13 @@
 				
 				services.fwupd.enable = true;
 
+				programs.ssh.startAgent = true;
 				powerManagement.cpuFreqGovernor = "performance";
+
+				environment.pathsToLink = [
+					"/share/applications" # home-manager
+					"/share/xdg-desktop-portal" # home-manager
+				];
 
 				environment.persistence."/persist" = {
 					enable = true;
@@ -30,14 +37,22 @@
 
 					files = [
 						"/etc/machine-id"
+						"/etc/ssh/ssh_host_ed25519_key"
+						"/etc/ssh/ssh_host_ed25519_key.pub"
 					];
 				};
+				
+				security.sudo.extraConfig = ''
+					Defaults lecture = never
+				'';
+
 
 
 				systemd.network.enable = true;
 				networking.useNetworkd = true;
 				networking.useDHCP = true;
-	
+				networking.hostName = "pandora";
+
 	environment.systemPackages = with pkgs; [
 			wget
 			dig
@@ -49,7 +64,7 @@
 			lm_sensors
 		];
 		
-		boot.kernelPackages = lib.mkForce pkgs.linuxPackages_7_0;
+		boot.kernelPackages = lib.mkForce pkgs.linuxPackages_7_1;
 		boot.loader.systemd-boot.enable = true;
  		boot.loader.efi.canTouchEfiVariables = true;
 
@@ -85,6 +100,24 @@
 			LC_PAPER = "nl_NL.UTF-8";
 			LC_TELEPHONE = "nl_NL.UTF-8";
 			LC_TIME = "nl_NL.UTF-8";
+		};
+
+		programs.steam.enable = true;
+
+
+		home-manager = {
+			useGlobalPkgs = true;
+			useUserPackages = true;
+
+			users.roguebit = { ... }: {
+				imports = [
+					self.homeModules.window-manager
+					self.homeModules.graphical
+				];
+
+
+				home.stateVersion = "26.05";
+			};
 		};
 		})
 		];

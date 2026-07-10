@@ -1,0 +1,67 @@
+{ ... }: {
+	flake.homeModules.yazi-file-picker = { pkgs, lib, config, ... }: {
+xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-termfilechooser ];
+		xdg.portal.config.common = {
+			"org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+		};
+
+		xdg.configFile."xdg-desktop-portal-termfilechooser/config".text = ''
+[filechooser]
+cmd=${pkgs.writeShellScript "yazi-picker.sh" ''
+
+multiple="$1"
+directory="$2"
+save="$3"
+path="$4"
+out="$5"
+debug="$6"
+
+set -e
+
+if [ "$debug" = 1 ]; then
+    set -x
+fi
+
+
+if [ "$save" = "1" ]; then
+    # save a file
+    set -- --chooser-file="$out" "$path"
+elif [ "$directory" = "1" ]; then
+    # upload files from a directory
+    set -- --chooser-file="$out" --cwd-file="$out"".1" "$path"
+elif [ "$multiple" = "1" ]; then
+    # upload multiple files
+    set -- --chooser-file="$out" "$path"
+else
+    # upload only 1 file
+    set -- --chooser-file="$out" "$path"
+fi
+
+command="${lib.getExe config.programs.kitty.package} --title "foobarbaz" -- ${lib.getExe config.programs.yazi.package}"
+
+for arg in "$@"; do
+    # escape double quotes
+    escaped=$(printf "%s" "$arg" | sed 's/"/\\"/g')
+    # escape special
+    command="$command \"$escaped\""
+done
+
+sh -c "$command"
+
+if [ "$directory" = "1" ]; then
+    if [ ! -s "$out" ] && [ -s "$out"".1" ]; then
+        cat "$out"".1" > "$out"
+        rm "$out"".1"
+    else
+        rm "$out"".1"
+    fi
+fi
+
+''}
+default_dir=$HOME
+open_mode=suggested
+save_mode=suggested
+		'';
+
+	};
+}

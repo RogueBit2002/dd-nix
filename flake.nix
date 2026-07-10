@@ -15,7 +15,11 @@
 		home-manager.url = "github:nix-community/home-manager/release-26.05";
 		home-manager.inputs.nixpkgs.follows = "nixpkgs";
 		
+		hyprland.url = "github:hyprwm/Hyprland?tag=v0.55.0";
 		pancake.url = "github:RogueBit2002/pancake.nvim";
+
+		sops-nix.url = "github:Mic92/sops-nix";
+		sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 	};
 
 	outputs = { ... }@inputs: inputs.flake-parts.lib.mkFlake
