@@ -16,6 +16,8 @@
 			({ pkgs, lib, ... }: {
 				system.stateVersion = "26.05";
 	
+				networking.hostName = "pandora";
+				
 				services.dbus.implementation = "broker";
 				
 				services.fwupd.enable = true;
@@ -51,7 +53,6 @@
 				systemd.network.enable = true;
 				networking.useNetworkd = true;
 				networking.useDHCP = true;
-				networking.hostName = "pandora";
 
 	environment.systemPackages = with pkgs; [
 			wget
