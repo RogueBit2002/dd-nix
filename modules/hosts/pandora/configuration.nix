@@ -3,7 +3,7 @@
 		modules = [
 			self.nixosModules.pandora-hardware	
 
-			inputs.impermanence.nixosModules.impermancence
+			inputs.impermanence.nixosModules.impermanence
 
 			self.nixosModules.nix
 			self.nixosModules.graphics-amd
