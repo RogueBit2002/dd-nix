@@ -1,5 +1,7 @@
 { self, inputs, ... }: {
-	flake.homeModules.minimal = { pkgs, lib, config, ... }: {
+	flake.homeModules.minimal = { pkgs, lib, config, ... }: let
+		system = pkgs.stdenv.hostPlatform.system;
+	in {
 		
 		programs.ssh = {
 			enable = true;
@@ -44,6 +46,7 @@
 		programs.tmux.enable = true;
 
 		programs.neovim.enable = true;
+		programs.neovim.package = self.packages.${system}.neovim;
 		programs.neovim.defaultEditor = true;
 
 		programs.yazi.enable = true;

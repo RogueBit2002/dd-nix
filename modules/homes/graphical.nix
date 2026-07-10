@@ -15,6 +15,8 @@
 		fonts.fontconfig.enable = true;
 		home.packages = with pkgs; [
 			_0xproto
+		] ++ [
+			self.packages.${system}.wiremix
 		];
 
 

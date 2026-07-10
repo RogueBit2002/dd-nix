@@ -523,11 +523,11 @@
     },
     "pancake": {
       "locked": {
-        "lastModified": 1783107899,
-        "narHash": "sha256-a9dcjgUZ2N0km00qRlgfhte67eSZFYoI6We4GrNG4WE=",
+        "lastModified": 1783715008,
+        "narHash": "sha256-rYvk1CMnFIckWvfmGly2tPwfFt/VpHV7O14A11VYhbc=",
         "owner": "RogueBit2002",
         "repo": "pancake.nvim",
-        "rev": "3ceb55a6a91834dad0d3f4453cf90372340deca1",
+        "rev": "7956d7c8efd014eadb448f992ad6f732d19096b8",
         "type": "github"
       },
       "original": {
