@@ -1,7 +1,44 @@
-{ self, ... }: {
-	flake.nixosModules.common = { pkgs, lib, ... }: {
+{ self, inputs, ... }: {
+	flake.nixosConfigurations.pandora = inputs.nixpkgs.lib.nixosSystem {
+		modules = [
+			self.nixosModules.pandora-hardware	
 
-		environment.systemPackages = with pkgs; [
+			inputs.impermanence.nixosModules.impermancence
+
+			self.nixosModules.nix
+			self.nixosModules.graphics-amd
+			self.nixosModules.users
+
+			self.nixosModules.ssh
+			self.nixosModules.compat
+
+			({ pkgs, lib, ... }: {
+				system.stateVersion = "26.05";
+	
+				services.dbus.implementation = "broker";
+				
+				services.fwupd.enable = true;
+
+				powerManagement.cpuFreqGovernor = "performance";
+
+				environment.persistence."/persist" = {
+					enable = true;
+
+					directories = [
+						"/var/lib"
+					];
+
+					files = [
+						"/etc/machine-id"
+					];
+				};
+
+
+				systemd.network.enable = true;
+				networking.useNetworkd = true;
+				networking.useDHCP = true;
+	
+	environment.systemPackages = with pkgs; [
 			wget
 			dig
 			git
@@ -49,6 +86,7 @@
 			LC_TELEPHONE = "nl_NL.UTF-8";
 			LC_TIME = "nl_NL.UTF-8";
 		};
-
+		})
+		];
 	};
 }
