@@ -10,8 +10,6 @@
 			hashedPasswordFile = config.sops.secrets."roguebit/hashedPassword".path;
 			uid = 1000;
 		};
-
-		# users.users.root.password = "hello";	
 	};
 
 }
