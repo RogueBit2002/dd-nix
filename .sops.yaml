@@ -1,13 +1,17 @@
 keys:
   - &roguebit_pandora ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJhbq0IJ3d6T1vOJ6m5SccCM2fi09CcPe/aBCrqm+rnQ
   - &roguebit_ganymede ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKInS0mhid2pEmS/erne6JLIhxsW4hNa4uu/GtP1XmYY
+  - &roguebit_callisto ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE2GgOE0hh7bMz5W2LYNLiXwTPOxLL/OM0s/sWKjOqNE 
   - &pandora ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICPydhmEu3QBDiKUtAo02c65WOcBoEafqn+LeHdPljXT
-  - &ganymede ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFx6lV0SPIFaLgvexMeVt/ii/+dojCXDSRdTZN7viBRc root@ganymede
+  - &ganymede ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFx6lV0SPIFaLgvexMeVt/ii/+dojCXDSRdTZN7viBRc
+  - &callisto ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINT+bBBfzyURsu7KTrNM3SF2Vcy1EtCUibk5AQbtT76v
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *roguebit_pandora
       - *roguebit_ganymede
+      - *roguebit_callisto
       - *pandora
       - *ganymede
+      - *callisto
