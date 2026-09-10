@@ -18,7 +18,7 @@
 		hyprland.url = "github:hyprwm/Hyprland?tag=v0.55.0";
 		pancake.url = "github:RogueBit2002/pancake.nvim";
 
-		sops-nix.url = "github:Mic92/sops-nix";
+		sops-nix.url = "github:Mic92/sops-nix?rev=f1406619a3884cd5c47992a70b8b35c9c0fcb4c9";
 		sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 	};
 
